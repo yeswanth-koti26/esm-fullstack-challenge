@@ -17,7 +17,7 @@ help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 clean: ## remove all build, test, coverage and artifacts
-	@echo NOT_IMPLEMENTED
+	rm -rf node_modules
 
 lint: ## check style with eslint
 	yarn run eslint .
@@ -32,7 +32,7 @@ test: ## run tests
 install: clean ## install the package to the active Python's site-packages
 	yarn install
 
-start: ## start local development server
+start: install ## start local development server
 	yarn dev
 
 run: clean ## run docker-compose
