@@ -12,7 +12,17 @@ dashboard_router = APIRouter()
 def get_top_drivers_by_wins(
     cqp: CommonQueryParams = Depends(CommonQueryParams),
     db: DB = Depends(get_db)
-):
+) -> list:
+    """Gets top drivers by wins.
+
+    Args:
+        cqp (CommonQueryParams, optional): Common query params used for filtering.
+                                           Defaults to Depends(CommonQueryParams).
+        db (DB, optional): SQLite DB connection. Defaults to Depends(get_db).
+
+    Returns:
+        list: list of top drivers by wins.
+    """
     base_query_str = (
         "with driver_wins as (\n"
         "    select d.id,\n"

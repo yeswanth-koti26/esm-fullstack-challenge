@@ -13,6 +13,13 @@ def add_basic_routes(
         router: APIRouter,
         exclude_tables: list[str] | None = None
 ):
+    """Adds basic endpoint routes to a route for listing all items or
+       getting a single item by id.
+
+    Args:
+        router (APIRouter): FastAPI router to add routes to
+        exclude_tables (list[str] | None, optional): List of tables to skip. Defaults to None.
+    """
     db = next(get_db())
     with db.get_connection() as conn:
         table_names = get_all_table_names(conn)
